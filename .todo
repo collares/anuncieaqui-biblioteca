@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 <todo version="0.1.20">
-    <note priority="medium" time="1251400819">
+    <note priority="medium" time="1251400819" done="1251414583">
         Migrar o algoritmo de Dijkstra
+    </note>
+    <note priority="medium" time="1251414616">
+        Implementar um Maxflow decente :)
     </note>
 </todo>
