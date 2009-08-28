@@ -74,7 +74,7 @@ int main()
         aresta(cdestino * 26 + i, sink, 0);
     }
 
-    dijkstra(source);
+    dijkstra(source, numIdiomas * 26 + 2);
     if(dist[sink] >= 0x3f3f3f3f) cout << "impossivel" << endl;
     else cout << dist[sink] << endl;
   }

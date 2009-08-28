@@ -1,3 +1,5 @@
+#include <cstring>
+
 struct heap
 {
     int heap[MAXV][2], v2n[MAXV];
@@ -5,17 +7,13 @@ struct heap
 
     void init(int sz)
     {
-        size = sz;
-        for(int i = 0; i < size; i++) {
-            heap[i][1] = v2n[i] = i;
-            heap[i][0] = 0x3f3f3f3f;
-        }
+        memset(v2n, -1, sizeof(int) * sz);
+        size = 0;
     }
 
     void swap(int& a, int& b) __attribute__((always_inline))
     {
-        int temp;
-        temp = a;
+        int temp = a;
         a = b;
         b = temp;
     }
@@ -32,20 +30,16 @@ struct heap
         int ret = heap[0][1];
         s(0, --size);
 
-        int cur_pos = 0;
-        while(true) {
-            int min = heap[cur_pos][0], pos_min = cur_pos;
-            for(int i = 1; i <= 2; i++)
-                if(2*cur_pos + i < size && heap[2*cur_pos + i][0] < min) {
-                    min = heap[2*cur_pos + i][0];
-                    pos_min = 2*cur_pos + i;
-                }
-
-            if(cur_pos == pos_min)
+        int cur_pos = 0, next = 1;
+        while(next < size) {
+            if(next + 1 < size && heap[next][0] > heap[next + 1][0])
+                next++;
+            if(heap[next][0] >= heap[cur_pos][0])
                 break;
 
-            s(cur_pos, pos_min);
-            cur_pos = pos_min;
+            s(next, cur_pos);
+            cur_pos = next;
+	    next = 2*cur_pos + 1;
         }
 
         return ret;
@@ -53,12 +47,18 @@ struct heap
 
     int decrease_key(int vertex, int new_value)
     {
+        if(v2n[vertex] == -1)
+        {
+          v2n[vertex] = size;
+          heap[size++][1] = vertex;
+        }
+
         heap[v2n[vertex]][0] = new_value;
 
         int cur_pos = v2n[vertex];
         while(cur_pos >= 1) {
             int parent = (cur_pos - 1)/2;
-            if(heap[cur_pos][0] >= heap[parent][0])
+            if(new_value >= heap[parent][0])
                 break;
 
             s(cur_pos, parent);
