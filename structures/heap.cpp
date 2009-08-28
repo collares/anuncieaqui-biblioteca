@@ -30,19 +30,19 @@ struct heap
         int ret = heap[0][1];
         s(0, --size);
 
-        int cur_pos = 0, next = 2;
+        int cur = 0, next = 2;
         while(next < size) {
             if(heap[next][0] > heap[next - 1][0])
                 next--;
-            if(heap[next][0] >= heap[cur_pos][0])
+            if(heap[next][0] >= heap[cur][0])
                 break;
 
-            s(next, cur_pos);
-            cur_pos = next;
-            next = 2*cur_pos + 2;
+            s(next, cur);
+            cur = next;
+            next = 2*cur + 2;
         }
-        if(next == size && heap[next - 1][0] < heap[cur_pos][0])
-            s(next - 1, cur_pos);
+        if(next == size && heap[next - 1][0] < heap[cur][0])
+            s(next - 1, cur);
 
         return ret;
     }
@@ -57,14 +57,14 @@ struct heap
 
         heap[v2n[vertex]][0] = new_value;
 
-        int cur_pos = v2n[vertex];
-        while(cur_pos >= 1) {
-            int parent = (cur_pos - 1)/2;
+        int cur = v2n[vertex];
+        while(cur >= 1) {
+            int parent = (cur - 1)/2;
             if(new_value >= heap[parent][0])
                 break;
 
-            s(cur_pos, parent);
-            cur_pos = parent;
+            s(cur, parent);
+            cur = parent;
         }
     }
 };
