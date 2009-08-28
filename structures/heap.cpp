@@ -30,7 +30,7 @@ struct heap
         int ret = heap[0][1];
         s(0, --size);
 
-        int cur_pos = 0, next = 1;
+        int cur_pos = 0, next = 2;
         while(next < size) {
             if(heap[next][0] > heap[next - 1][0])
                 next--;
