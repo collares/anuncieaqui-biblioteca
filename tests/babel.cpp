@@ -11,24 +11,24 @@
 using namespace std;
 
 map<string, int> idiomas; int numIdiomas;
-int cod(string s) 
+int cod(string s)
 {
   if(idiomas.find(s) == idiomas.end()) idiomas[s] = numIdiomas++;
   return idiomas[s];
 }
 
-struct triple 
-{ 
-  int orig, dest; char c; 
-  triple() { } 
+struct triple
+{
+  int orig, dest; char c;
+  triple() { }
   triple(int orig, int dest, char c) : orig(orig), dest(dest), c(c) { }
-  bool operator<(triple t) const 
+  bool operator<(triple t) const
   {
     if(orig < t.orig) return true;
     if(orig == t.orig && dest < t.dest) return true;
     if(orig == t.orig && dest == t.dest && c < t.c) return true;
     return false;
-  }  
+  }
 };
 
 int main()
@@ -36,7 +36,7 @@ int main()
   int M;
   while(cin >> M && M != 0)
   {
-    idiomas.clear(); numIdiomas = 0; 
+    idiomas.clear(); numIdiomas = 0;
     init_graph();
 
     string origem, destino, palavra;
@@ -50,28 +50,28 @@ int main()
       int dorigem = cod(origem), ddestino = cod(destino);
       if(dorigem > ddestino) swap(dorigem, ddestino);
 
-      if(entradas[triple(dorigem, ddestino, palavra[0])] == 0) 
+      if(entradas[triple(dorigem, ddestino, palavra[0])] == 0)
         entradas[triple(dorigem, ddestino, palavra[0])] = palavra.size();
       else
         entradas[triple(dorigem, ddestino, palavra[0])] = min(entradas[triple(dorigem, ddestino, palavra[0])], (int)palavra.size());
-    }   
+    }
 
     for(map<triple, int>::iterator it = entradas.begin(); it != entradas.end(); it++)
     {
       triple atual = (*it).first;
       for(int c = 0; c < 26; c++)
-        if(c != atual.c - 'a') 
+        if(c != atual.c - 'a')
         {
-	    aresta(atual.orig*26 + c, atual.dest*26 + (atual.c - 'a'), (*it).second);
-	    aresta(atual.dest*26 + c, atual.orig*26 + (atual.c - 'a'), (*it).second);
+            aresta(atual.orig*26 + c, atual.dest*26 + (atual.c - 'a'), (*it).second);
+            aresta(atual.dest*26 + c, atual.orig*26 + (atual.c - 'a'), (*it).second);
         }
     }
 
     int source = numIdiomas * 26, sink = numIdiomas * 26 + 1;
     for(int i = 0; i < 26; i++)
     {
-	aresta(source, corigem * 26 + i, 0);
-	aresta(cdestino * 26 + i, sink, 0);
+        aresta(source, corigem * 26 + i, 0);
+        aresta(cdestino * 26 + i, sink, 0);
     }
 
     dijkstra(source);

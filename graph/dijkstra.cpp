@@ -34,16 +34,15 @@ void dijkstra(int s, int num_nodes = MAXV)
     dist[s] = 0;
 
     while(h.size > 0) {
-	int v = h.extract_min();
+        int v = h.extract_min();
 
-	for(int i = last_edge[v]; i != -1; i = prev_edge[i]) {
-	    int w = adj[i], new_dist = dist[v] + weight[i];
+        for(int i = last_edge[v]; i != -1; i = prev_edge[i]) {
+            int w = adj[i], new_dist = dist[v] + weight[i];
 
-	    if(new_dist < dist[w])
-	    {
-		h.decrease_key(w, new_dist);
-		dist[w] = new_dist;
-	    }
-	}
+            if(new_dist < dist[w]) {
+                h.decrease_key(w, new_dist);
+                dist[w] = new_dist;
+            }
+        }
     }
 }

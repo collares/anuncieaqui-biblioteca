@@ -10,7 +10,7 @@
 (require 'cc-mode)
 (defun cxx-compile()
   (interactive)
-  (progn 
+  (progn
     (save-buffer)
     (compile (concat "g++ " buffer-file-name))
   )
