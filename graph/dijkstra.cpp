@@ -11,7 +11,6 @@ heap h;
 void init_graph()
 {
     nedges = 0;
-    memset(prev_edge, -1, sizeof prev_edge);
     memset(last_edge, -1, sizeof last_edge);
 }
 
