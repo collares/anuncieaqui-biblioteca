@@ -9,6 +9,10 @@ for test in testlist:
   sys.stdout.write('Executando teste {0}... '.format(test));
   sys.stdout.flush();
 
+  if subprocess.call(['g++', '-o' + test, test + '.cpp']):
+    print 'Erro de compilacao do programa {0}!'.format(test);
+    break;
+
   p = subprocess.Popen('./' + test + ' < ' + test + '.in > ' + test + '.out', shell=True);
   os.waitpid(p.pid, 0);
 
