@@ -24,18 +24,15 @@ void aresta(int v, int w, int eweight)
 
 void dijkstra(int s, int num_nodes = MAXV)
 {
-    h.init(num_nodes);
-    h.decrease_key(s, 0);
-
     memset(dist, 0x3f, sizeof dist);
-    dist[s] = 0;
+    h.init(num_nodes);
+    h.decrease_key(s, dist[s] = 0);
 
     while(h.size > 0) {
         int v = h.extract_min();
 
         for(int i = last_edge[v]; i != -1; i = prev_edge[i]) {
             int w = adj[i], new_dist = dist[v] + weight[i];
-
             if(new_dist < dist[w]) {
                 h.decrease_key(w, new_dist);
                 dist[w] = new_dist;
@@ -43,3 +40,4 @@ void dijkstra(int s, int num_nodes = MAXV)
         }
     }
 }
+
