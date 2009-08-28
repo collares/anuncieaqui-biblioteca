@@ -12,7 +12,7 @@ for test in testlist:
   p = subprocess.Popen('./' + test + ' < ' + test + '.in > ' + test + '.out', shell=True);
   os.waitpid(p.pid, 0);
 
-  if subprocess.call(['diff', test + '.out', test + '.sol']):
+  if subprocess.call(['diff', '-u', test + '.out', test + '.sol']):
     print 'Erro no teste do programa {0}!'.format(test);
     break;
   print 'OK!'
