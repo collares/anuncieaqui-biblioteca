@@ -1,0 +1,19 @@
+(global-font-lock-mode t)
+(setq transient-mark-mode t)
+(require 'font-lock)
+(require `paren)
+(global-set-key [f5] 'cxx-compile)
+(global-set-key [f6] 'debug)
+(set-input-mode nil nil 1)
+(fset 'yes-or-no-p 'y-or-n-p)
+
+(require 'cc-mode)
+(defun cxx-compile()
+  (interactive)
+  (progn
+    (save-buffer)
+    (compile (concat "g++ " buffer-file-name))
+  )
+)
+
+(add-hook 'c++-mode-hook '(lambda () (c-set-style "stroustrup")))
