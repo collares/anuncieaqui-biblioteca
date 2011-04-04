@@ -1,0 +1,148 @@
+\documentclass[a4paper]{amsart}
+\usepackage[pdftex]{geometry}
+\usepackage[utf8]{inputenc}
+
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{courier}
+\usepackage{fancyhdr}
+
+\lstset{language=C++}
+\lstset{columns=fullflexible}
+\lstset{basicstyle=\scriptsize\ttfamily}
+\lstset{showspaces=false}
+
+\geometry{landscape}
+\setlength{\topmargin}{-0.25in}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\columnsep}{1in}
+\setlength{\columnseprule}{0.2pt}
+\textwidth 9.5in
+
+\pagestyle{fancy}
+\lhead{Universidade Federal de Sergipe}
+\chead{}
+\rhead{\thepage}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+
+\newcommand{\includecpp}[3]{
+  \begin{multicols}{2}
+    [\subsection{#1}{Hash: \input{#2/.#3.hash}}\ ]
+    \lstinputlisting[language=c++]{#2/#3}
+  \end{multicols}
+}
+
+\newcommand{\includelisp}[3]{
+  \begin{multicols}{2}
+    [\subsection{#1}{Hash: \input{#2/.#3.hash}}\ ]
+    \lstinputlisting[language=lisp]{#2/#3}
+  \end{multicols}
+}
+
+\newcommand{\includemake}[3]{
+  \begin{multicols}{2}
+    [\subsection{#1}{Hash: \input{#2/.#3.hash}}\ ]
+    \lstinputlisting[language=make]{#2/#3}
+  \end{multicols}
+}
+
+\newcommand{\stirlingfirst}[2]{\genfrac{[}{]}{0pt}{}{#1}{#2}}
+\newcommand{\stirlingsecond}[2]{\genfrac{\{}{\}}{0pt}{}{#1}{#2}}
+
+\begin{document}
+  \thispagestyle{fancy}
+  \begin{center}
+    \Huge\textsc{ACM ICPC Team Reference \\ 2010 World Finals}
+
+    \ 
+ 
+    \huge Team Anuncie Aqui \\ Universidade Federal de Sergipe
+
+    \ 
+
+  \end{center}
+
+  \section{Configuration files and scripts}
+    \includelisp{.emacs}{../config}{dotemacs}
+    \includelisp{Makefile}{../config}{flymake.mk}
+    \includecpp{.vimrc}{../config}{dotvimrc}
+    \includecpp{Hash generator}{../config}{hashgen}
+    \includecpp{Solution template}{../config}{template.cpp}
+
+  \section{Graph algorithms}
+    \includecpp{Tarjan's SCC algorithm}{../graph}{scc.cpp}
+    \includecpp{Dinic's maximum flow algorithm}{../graph}{dinic.cpp}
+    \includecpp{Successive shortest paths mincost maxflow algorithm}{../graph}{busacker_gowen.cpp}
+    \includecpp{Gabow's general matching algorithm}{../graph}{gabow.cpp}
+
+  \section{Math}
+    \includecpp{Fractions}{../math}{frac.cpp}
+    \includecpp{Chinese remainder theorem}{../math}{crt.cpp}
+    \includecpp{Longest increasing subsequence}{../math}{lis.cpp}
+    \includecpp{Simplex (Warsaw University)}{../math}{simplex.cpp}
+    \includecpp{Romberg's method}{../math}{romberg.cpp}
+    \includecpp{Floyd's cycle detection algorithm}{../math}{floyd.cpp}
+    \includecpp{Pollard's rho algorithm}{../math}{pollard.cpp}
+    \includecpp{Miller-Rabin's algorithm}{../math}{miller_rabin.cpp}
+    \includecpp{Polynomials (PUC-Rio)}{../math}{polynomials.cpp}
+
+  \section{Geometry}
+    \includecpp{Point class}{../geometry}{point.cpp}
+    \includecpp{Intersection primitives}{../geometry}{isect_primitives.cpp}
+    \includecpp{Polygon primitives}{../geometry}{polygon_primitives.cpp}
+    \includecpp{Miscellaneous primitives}{../geometry}{misc_primitives.cpp}
+    \includecpp{Smallest enclosing circle}{../geometry}{enclosing_circle.cpp}
+    \includecpp{Convex hull}{../geometry}{hull.cpp}
+    \includecpp{Closest pair of points}{../geometry}{closest_points.cpp}
+    \includecpp{Kd-tree}{../geometry}{kd_tree.cpp}
+    \includecpp{Range tree}{../geometry}{range_tree.cpp}
+
+  \section{Data structures}
+    \includecpp{Treap}{../structures}{treap.cpp}
+    \includecpp{Heap}{../structures}{heap.cpp}
+    \includecpp{Big numbers (PUC-Rio)}{../structures}{bignum.cpp}
+
+  \section{String algorithms}
+    \includecpp{Manber-Myers' algorithm}{../string}{manber_myers.cpp}
+    \includecpp{Morris-Pratt's algorithm}{../string}{morris_pratt.cpp}
+    \includecpp{Aho-Corasick's algorithm (UFPE)}{../string}{aho_corasick.cpp}
+
+  \enlargethispage*{\baselineskip}
+  \pagebreak
+
+  \section{Useful mathematical facts}
+  \begin{multicols}{2}
+    \input{math_facts}
+  \end{multicols}
+
+  \enlargethispage*{\baselineskip}
+  \pagebreak
+
+  \section{Mistakes to avoid and strategy hints}
+  \begin{multicols}{2}
+    \input{mistakes}
+  \end{multicols}
+
+  \enlargethispage*{\baselineskip}
+  \pagebreak
+
+  \begin{center}
+    \Huge\textsc{ACM ICPC Team Reference - Contents}
+
+    \vspace{0.35cm}
+
+    \huge Team Anuncie Aqui \\ Universidade Federal de Sergipe
+
+    \vspace{0.35cm}
+
+  \end{center}
+
+  \begin{multicols}{2}
+    \tableofcontents
+  \end{multicols}
+\end{document}
