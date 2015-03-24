@@ -1,0 +1,1 @@
+"Anuncie Aqui" Team Code Library for ACM ICPC is a very well known collegiate competition for computer science students. It allows for up to twenty printed pages of pre-written code for use in solving its problems, and this is our pre-written code.
